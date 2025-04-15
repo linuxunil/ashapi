@@ -1,0 +1,19 @@
+[project]
+name = "ashapi"
+version = "0.1.0"
+description = "A better pokeapi"
+authors = [
+    { name = "linuxunil", email = "linuxunil@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "bs4>=0.0.2",
+    "fastapi[standard]>=0.115.12",
+    "httpx>=0.28.1",
+    "sqlmodel>=0.0.24",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.11.5",
+]
