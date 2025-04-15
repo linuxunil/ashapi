@@ -1,0 +1,8 @@
+name: ashapi
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Containerfile
+    network_mode: host
