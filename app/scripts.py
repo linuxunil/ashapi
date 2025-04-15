@@ -1,6 +1,6 @@
 import csv
-from models import Pokemon
-from database import engine 
+from app.models import Pokemon
+from app.database import engine 
 from sqlmodel import Session
 
 
@@ -12,7 +12,10 @@ def create_entry(pokemon: Pokemon) -> Pokemon:
     return pokemon
 
 if __name__ == "__main__":
-    with open("data/pokemon.csv", mode="r") as file:
+    populate_db()
+
+def populate_db():
+    with open("app/data/pokemon.csv", mode="r") as file:
         import_file = csv.reader(file)
         header = next(import_file)
         for lines in import_file:
