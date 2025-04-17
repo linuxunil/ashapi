@@ -1,6 +1,0 @@
-name: ashapi
-
-services:
-  api:
-    build: .
-     - "8000:80"

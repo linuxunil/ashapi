@@ -10,8 +10,8 @@ router = APIRouter(
 
 
 @router.get("/pokemon/")
-async def get_pokedex(session: Session = Depends(get_session)):
-    pokemon = session.exec(select(Pokemon)).all()
+async def get_pokedex(session: Session = Depends(get_session), limit: int = 300, offset: int = 0):
+    pokemon = session.exec(select(Pokemon).limit(limit).offset(offset)).all()
     return pokemon
 
 @router.get("/pokemon/{ndex}")

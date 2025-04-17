@@ -12,5 +12,6 @@ RUN uv sync --frozen --no-cache
 
 # Run the application.
 ENV PATH="/code/.venv/bin:$PATH"
+EXPOSE 8000
 ENTRYPOINT []
-CMD ["fastapi", "run", "app/main.py", "--port", "80", "--host", "0.0.0.0" ]
+CMD ["fastapi", "run", "app/main.py", "--port", "8000", "--host", "0.0.0.0" ]
