@@ -5,7 +5,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
-from app.scripts import populate_db, settings
+import app.settings
+from app.scripts import populate_db
+
+settings = app.settings.Settings()
+engine = create_engine(str(settings.SQL_ALCHEMY_DATABASE_URI))
 
 app = FastAPI()
 
@@ -26,7 +30,7 @@ app.mount("/sprite", StaticFiles(directory="/code/app/static"), name="static")
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
-    populate_db()
+    populate_db(get_session())
 
 
 # Database
@@ -45,7 +49,6 @@ class HighScore(SQLModel, table=True):
 
 
 ## database
-engine = create_engine(str(settings.SQL_ALCHEMY_DATABASE_URI))
 
 
 def get_session():
