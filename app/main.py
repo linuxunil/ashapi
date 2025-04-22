@@ -1,11 +1,13 @@
+from app.models import Pokemon, HighScore
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from app.database import create_db_and_tables
-from app.routers import router
+from app.routers import score_router, pokemon_router
 from app.scripts import populate_db
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
 origins = [
     "http://localhost:3000",
 ]
@@ -18,7 +20,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.mount("/sprite", StaticFiles(directory="/code/app/static"), name="static")
-app.include_router(router)
+app.include_router(pokemon_router)
+app.include_router(score_router)
 
 
 @app.on_event("startup")

@@ -1,7 +1,7 @@
 import csv
-from app.models import Pokemon
+from app.models import Pokemon, HighScore
 from app.database import engine
-from sqlmodel import Session
+from sqlmodel import Session, SQLModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Annotated, Any, Literal
 
